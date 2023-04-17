@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block titulo %} Lista de Alumnos {% endblock %}
+
+{% block contenido %}
+<div class="row">
+    <div class="col-12">
+
+        <h4>Listado de Alumnos</h4>
+        <h4>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAlumno" onclick="eliminarNuevo()">
+                Crear Alumno
+            </button>
+        </h4>
+
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Curso</th>
+                        <th>Nota</th>
+                        <th>Estado</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="result">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="createAlumno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form id="formCreate">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crear Alumno</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="eliminarNuevo()"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <table class="table table-bordered">
+                            <thead class="table-dark">
+                                <th>Caracteristica</th>
+                                <th>Valor</th>
+                            </thead>
+                            <tbody>
+                                {% csrf_token %}
+                                <input type="hidden" id="id">
+                                <tr>
+                                    <td> <label for="nombre">Nombre</label> </td>
+                                    <td> <input type="text" class="form-control" id="nombre" placeholder="Ingrese Nombre" required> </td>
+                                </tr>
+                                <tr>
+                                    <td> <label for="curso">Curso</label> </td>
+                                    <td> <input type="text" class="form-control" id="curso" placeholder="Ingrese Curso" required> </td>
+                                </tr>
+                                <tr>
+                                    <td> <label for="nota">Nota</label> </td>
+                                    <td> <input type="number" class="form-control" id="nota" placeholder="Ingrese Nota" required> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="eliminarNuevo()">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="create">Crear</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% for c in alumnos %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{c.nombre}}</td>
+        <td>{{c.curso}}</td>
+        <td>{{c.nota}}</td>
+        <td>{{c.estado}}</td>
+        <td><a class="btn btn-success edit" name="{{c.id}}">Editar</a></td>
+        <td><a class="btn btn-danger delete" name="{{c.id}}">Eliminar</a></td>
+    </tr>
+{% endfor %}
